@@ -1,14 +1,9 @@
-﻿Build started 5/30/2015 1:01:52 AM.
-     1>Project "C:\Users\Mnxoid\Documents\Visual Studio 2013\Projects\Uber-Networking-Toolkit\tcp2std\tcp2std.vcxproj" on node 2 (Rebuild target(s)).
-     1>ClCompile:
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
-         Source.cpp
-     1>c:\users\mnxoid\documents\visual studio 2013\projects\uber-networking-toolkit\tcp2std\source.cpp(178): warning C4715: 'TCP_cl' : not all control paths return a value
-       Link:
-         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Mnxoid\Documents\Visual Studio 2013\Projects\Uber-Networking-Toolkit\Debug\tcp2std.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Mnxoid\Documents\Visual Studio 2013\Projects\Uber-Networking-Toolkit\Debug\tcp2std.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Mnxoid\Documents\Visual Studio 2013\Projects\Uber-Networking-Toolkit\Debug\tcp2std.lib" /MACHINE:X86 Debug\Source.obj
-         tcp2std.vcxproj -> C:\Users\Mnxoid\Documents\Visual Studio 2013\Projects\Uber-Networking-Toolkit\Debug\tcp2std.exe
-     1>Done Building Project "C:\Users\Mnxoid\Documents\Visual Studio 2013\Projects\Uber-Networking-Toolkit\tcp2std\tcp2std.vcxproj" (Rebuild target(s)).
+﻿Build started 11.06.2015 23:18:04.
+Project "E:\Paul\SP_LABS\Uber-Networking-Toolkit\tcp2std\tcp2std.vcxproj" on node 2 (Build target(s)).
+Link:
+  tcp2std.vcxproj -> E:\Paul\SP_LABS\Uber-Networking-Toolkit\Debug\tcp2std.exe
+Done Building Project "E:\Paul\SP_LABS\Uber-Networking-Toolkit\tcp2std\tcp2std.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.02
+Time Elapsed 00:00:00.07
