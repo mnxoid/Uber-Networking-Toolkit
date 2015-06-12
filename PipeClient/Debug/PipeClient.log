@@ -1,4 +1,4 @@
-﻿Build started 12.06.2015 1:09:12.
+﻿Build started 12.06.2015 9:36:21.
 Project "E:\Paul\SP_LABS\Uber-Networking-Toolkit\PipeClient\PipeClient.vcxproj" on node 2 (Build target(s)).
 ClCompile:
   E:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source.cpp
@@ -13,4 +13,4 @@ Done Building Project "E:\Paul\SP_LABS\Uber-Networking-Toolkit\PipeClient\PipeCl
 
 Build succeeded.
 
-Time Elapsed 00:00:05.37
+Time Elapsed 00:00:03.64

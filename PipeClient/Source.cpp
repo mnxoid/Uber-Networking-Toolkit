@@ -8,6 +8,7 @@
 #include <string>
 #include <io.h>
 #include <fcntl.h>
+#include <strsafe.h>
 
 #define BUFSIZE 512
 
@@ -15,8 +16,8 @@ HANDLE hPipe;
 TCHAR  chBuf[BUFSIZE];
 BOOL   fSuccess = FALSE;
 DWORD  cbRead, cbToWrite, cbWritten, dwMode;
-LPTSTR lpszPipename = TEXT("\\\\.\\pipe\\Sithis");
-LPTSTR lpvMessage = TEXT("Default message from client.");
+LPTSTR lpszPipename = TEXT("\\\\192.168.43.33\\pipe\\mynamedpipe");
+LPTSTR lpvMessage = (LPTSTR)GlobalAlloc(GPTR, 1024 * sizeof(TCHAR));
 std::string pipeInputName;
 
 void Info() {
@@ -37,7 +38,7 @@ void Help() {
 void Configure() {
 	printf("Please, specify a pipe name\n");
 	std::getline(std::cin, pipeInputName);
-	pipeInputName = "\\\\.\\pipe\\" + pipeInputName;
+	pipeInputName = "\\\\192.168.43.33\\pipe\\" + pipeInputName;
 	TCHAR* pp = new TCHAR[256];
 	wcscpy(pp, (const wchar_t*)pipeInputName.c_str());
 	lpszPipename = pp;
@@ -46,16 +47,15 @@ void Configure() {
 
 void Routine() 
 {
-	TCHAR* sendMessage = new TCHAR[256];
+	char* sendMessage = new char[256];
 	std::string confass;
 	std::cout
 		<< "Message: "
 		<< std::endl;
 	std::cin >> confass;
+	StringCchPrintf(lpvMessage, strlen(sendMessage), (const wchar_t*)confass.c_str());
 
-	wcscpy(sendMessage, (const wchar_t*)confass.c_str());
-
-	lpvMessage = sendMessage;
+	lpvMessage[lstrlen(lpvMessage)] = 0;
 
 	_tprintf(TEXT("Sending %d byte message: \"%s\"\n"), cbToWrite, lpvMessage);
 
