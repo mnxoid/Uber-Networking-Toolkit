@@ -11,6 +11,7 @@ using namespace std;
 #include <ws2tcpip.h>
 #include <stdlib.h>
 
+#include "Header.h"
 
 // Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib
 #pragma comment (lib, "Ws2_32.lib")
@@ -101,13 +102,32 @@ cout << "connect" << endl;
 		WSACleanup();
 		return 1;
 	}
-
+	//#################INTEGRATION START###################################
+	bool automode = false;
+	CowsAndBulls_Player* player = NULL;
+	pair<int, int> res;
+	//#################INTEGRATION END#####################################
 	while (true)
 	{
+		//################INTEGRATION START####################################
 		string mess;
-		cout << "Enter your message: ";
-		cin >> mess;
-		Getch();
+		if (!automode) 
+		{
+			cout << "Enter your message: ";
+			getline(cin,mess);
+			Getch();
+			if (mess.find(string("startauto")) != string::npos)
+			{
+				automode = true;
+			}
+		}
+		if (automode)
+		{
+			if (!player) player = new CowsAndBulls_Player(atoi(mess.c_str() + 9));
+			mess = player->gimmeANumber();
+			if (mess.empty()) { cout << endl << "Something went wrong with the scoring..." << endl << "Cannot find an answer!" << endl; automode = false; mess = "err"; }
+		}
+		//###############INTEGRATION END#######################################
 		#ifdef VERBOSE
 cout << "send" << endl;
 #endif
@@ -141,11 +161,25 @@ cout << "recv" << endl;
 					printf("recv failed with error: %d\n", WSAGetLastError());
 	
 			//} while (iResult > 0);
-				int i;
-				cout << "Input 1 to continue or 0 to exit: ";
-				cin >> i;
-				Getch();
-				if (!i)break;
+				//######################INTEGRATION START##############################
+				if (!automode)
+				{
+					int i;
+					cout << "Input 1 to continue or 0 to exit: ";
+					cin >> i;
+					Getch();
+					if (!i)break;
+				}
+				else {
+					string ress = string(recvbuf);
+					sscanf(ress.c_str(), "%d:%d", &(res.first), &(res.second));
+// 					res.first = atoi(ress.c_str());
+// 					res.second = ress.find(':');
+					if (res.first == player->LEN) { cout << endl << "I found the secret number!" << endl << "It is: " << mess << endl; automode = false; }
+					cout << "|    " << mess << "   |  " << setw(3) << res.first << "    |  " << setw(3) << res.second << "   |\n+-----------+---------+--------+\n";
+					player->clearPool(mess, res);
+				}
+				//####################INTEGRATION END##################################
 	}
 	#ifdef VERBOSE
 cout << "shutdown" << endl;

@@ -1,5 +1,5 @@
 #undef UNICODE
-
+#include "../tcp2std/Header.h"
 #define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
@@ -105,7 +105,9 @@ cout << "accept" << endl;
 
 	// No longer need server socket
 	//closesocket(ListenSocket);
-
+	CowsAndBulls_Player game(6);
+	game.secret = game.createSecret();
+	pair<int, int> res;
 	// Receive until the peer shuts down the connection
 	do {
 		#ifdef VERBOSE
@@ -115,11 +117,14 @@ cout << "recv" << endl;
 		if (iResult > 0) {
 			printf("Bytes received: %d\n", iResult);
 			cout << recvbuf << endl;
+			string guess = string(recvbuf);
+			game.scoreIt(guess, res);
+			string resp = to_string(res.first) + string(":") + to_string(res.second);
 			#ifdef VERBOSE
 cout << "send" << endl;
 #endif
 			// Echo the buffer back to the sender
-			iSendResult = send(ClientSocket, recvbuf, iResult, 0);
+			iSendResult = send(ClientSocket, resp.c_str(), iResult, 0);
 			if (iSendResult == SOCKET_ERROR) {
 				printf("send failed with error: %d\n", WSAGetLastError());
 				closesocket(ClientSocket);
